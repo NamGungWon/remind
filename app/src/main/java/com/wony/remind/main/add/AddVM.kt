@@ -1,4 +1,6 @@
 package com.wony.remind.main.add
 
-class AddVM {
+import com.wony.remind.base.BaseVM
+
+class AddVM(private val repo: AddRepo): BaseVM() {
 }

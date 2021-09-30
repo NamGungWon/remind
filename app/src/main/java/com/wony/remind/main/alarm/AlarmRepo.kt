@@ -1,4 +1,6 @@
 package com.wony.remind.main.alarm
 
-class AlarmRepo {
+import android.content.Context
+
+class AlarmRepo(private val context: Context) {
 }

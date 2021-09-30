@@ -1,4 +1,6 @@
 package com.wony.remind.main.add
 
-class AddRepo {
+import android.content.Context
+
+class AddRepo(private var context: Context) {
 }

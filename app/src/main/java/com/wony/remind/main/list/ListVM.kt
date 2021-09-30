@@ -1,4 +1,6 @@
 package com.wony.remind.main.list
 
-class ListVM {
+import com.wony.remind.base.BaseVM
+
+class ListVM(private var repo: ListRepo): BaseVM() {
 }

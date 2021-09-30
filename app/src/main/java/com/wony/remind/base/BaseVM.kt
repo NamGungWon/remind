@@ -1,4 +1,6 @@
 package com.wony.remind.base
 
-class BaseVM {
+import androidx.lifecycle.ViewModel
+
+open class BaseVM: ViewModel() {
 }

@@ -1,4 +1,6 @@
 package com.wony.remind.main.list
 
-class ListRepo {
+import android.content.Context
+
+class ListRepo(private val context: Context) {
 }
