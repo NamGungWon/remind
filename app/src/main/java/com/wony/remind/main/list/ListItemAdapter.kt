@@ -27,6 +27,9 @@ class ListItemAdapter(private val fragment: ListFragment) :
                 tvTitle.text = item.title
                 cbEnable.isChecked = item.isActive
 
+                vm = fragment.viewModel
+                id = item.id
+
                 executePendingBindings()
             }
         }

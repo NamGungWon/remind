@@ -24,5 +24,8 @@ object RemindData {
 
         @Query("SELECT * FROM $TABLE_NAME")
         fun select(): LiveData<List<Item>>
+
+        @Query("UPDATE $TABLE_NAME SET isActive = :isActive WHERE id = :id")
+        fun updateActive(id: Long, isActive: Boolean)
     }
 }

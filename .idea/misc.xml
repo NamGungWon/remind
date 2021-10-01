@@ -5,8 +5,10 @@
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.19157608695652173" />
+        <entry key="app/src/main/res/layout/fragment_alarm.xml" value="0.2265625" />
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.1953125" />
         <entry key="app/src/main/res/layout/item_alarm.xml" value="0.1953125" />
+        <entry key="app/src/main/res/layout/item_remind.xml" value="0.2265625" />
       </map>
     </option>
   </component>
