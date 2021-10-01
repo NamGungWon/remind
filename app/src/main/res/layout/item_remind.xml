@@ -5,9 +5,14 @@
         <variable
             name="id"
             type="Long" />
+
         <variable
             name="vm"
             type="com.wony.remind.main.list.ListVM" />
+
+        <variable
+            name="view"
+            type="com.wony.remind.main.list.ListFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:onClick="@{() -> view.moveAdd(id)}"
         android:paddingStart="10dp">
 
         <TextView

@@ -29,6 +29,7 @@ class ListItemAdapter(private val fragment: ListFragment) :
 
                 vm = fragment.viewModel
                 id = item.id
+                view = fragment
 
                 executePendingBindings()
             }

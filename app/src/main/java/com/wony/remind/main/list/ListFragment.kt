@@ -28,4 +28,9 @@ class ListFragment : BaseFragment<FragmentListBinding, ListVM>() {
             moveNavi(R.id.action_listFragment_to_addFragment)
         }
     }
+
+    fun moveAdd(id: Long){
+        var action = ListFragmentDirections.actionListFragmentToAddFragment(id)
+        moveNavi(action)
+    }
 }

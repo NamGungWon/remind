@@ -8,9 +8,8 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import com.wony.remind.R
 
 abstract class BaseFragment<B : ViewDataBinding, V: BaseVM>: Fragment() {
 
@@ -52,6 +51,10 @@ abstract class BaseFragment<B : ViewDataBinding, V: BaseVM>: Fragment() {
 
     fun moveNavi(id: Int){
         findNavController().navigate(id)
+    }
+
+    fun moveNavi(action: NavDirections){
+        findNavController().navigate(action)
     }
 
     fun backStack(){

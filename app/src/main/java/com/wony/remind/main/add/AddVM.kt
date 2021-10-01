@@ -1,6 +1,7 @@
 package com.wony.remind.main.add
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.wony.remind.base.BaseVM
@@ -34,6 +35,20 @@ class AddVM(private val repo: AddRepo) : BaseVM() {
         Calendar.getInstance().run {
             selectHour = get(Calendar.HOUR_OF_DAY)
             selectMinute = get(Calendar.MINUTE)
+        }
+    }
+
+    fun setSelectId(id: Long){
+        ioScope.launch {
+            selectItem = repo.selectItem(id)
+
+            selectItem?.run{
+                remindTitle = title
+
+                uiScope.launch {
+                    selectSoundUri = Uri.parse(bell)
+                }
+            }
         }
     }
 

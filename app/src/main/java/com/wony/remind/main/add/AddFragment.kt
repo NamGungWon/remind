@@ -10,6 +10,7 @@ import android.util.Log
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.navigation.fragment.navArgs
 import com.wony.remind.R
 import com.wony.remind.base.BaseFragment
 import com.wony.remind.databinding.FragmentAddBinding
@@ -21,7 +22,8 @@ class AddFragment : BaseFragment<FragmentAddBinding, AddVM>() {
     override val viewModel: AddVM by viewModel()
 
 
-    private val REQ_SOUND = 1001
+    private val args: AddFragmentArgs by navArgs()
+
     private var resultLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
@@ -41,10 +43,11 @@ class AddFragment : BaseFragment<FragmentAddBinding, AddVM>() {
     }
 
 
+
     override fun init() {
-
-
         binding.vm = viewModel
+
+        viewModel.setSelectId(args.id)
 
         viewModel.selectSoundUri = RingtoneManager.getActualDefaultRingtoneUri(context, RingtoneManager.TYPE_ALL)
 

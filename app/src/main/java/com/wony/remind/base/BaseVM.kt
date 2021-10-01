@@ -12,6 +12,9 @@ open class BaseVM: ViewModel() {
     private val job = Job()
 
     var ioScope = CoroutineScope(Dispatchers.IO + job)
+    var uiScope = CoroutineScope(Dispatchers.Main + job)
+
+
     val toastFlag  = SingleLiveData<String>()
     val backStackFlag  = SingleLiveData<Boolean>()
 
