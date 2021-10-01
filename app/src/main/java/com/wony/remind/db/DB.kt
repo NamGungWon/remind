@@ -7,8 +7,10 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(version = 1,entities = [])
+@Database(version = 1,entities = [RemindData.Item::class])
 abstract class DB: RoomDatabase() {
+
+    abstract fun remindDao(): RemindData.DAO
 
     companion object {
         private val dbName = "remind.db"
