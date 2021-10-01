@@ -29,6 +29,8 @@ class ListItemAdapter(private val fragment: ListFragment) :
 
                 vm = fragment.viewModel
                 id = item.id
+                alarmTime = item.alarmTime
+                isActive = item.isActive
                 view = fragment
 
                 executePendingBindings()

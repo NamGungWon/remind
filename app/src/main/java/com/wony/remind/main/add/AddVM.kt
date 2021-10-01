@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.wony.remind.base.BaseVM
 import com.wony.remind.db.RemindData
+import com.wony.remind.utils.AlarmUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.util.*
@@ -23,6 +24,12 @@ class AddVM(private val repo: AddRepo) : BaseVM() {
 
     private var _selectSoundStr = MutableLiveData("")
     var selectSoundStr: LiveData<String> = _selectSoundStr
+
+    private var _selectHourLiveData = MutableLiveData<Int>()
+    var selectHourLiveData: LiveData<Int> = _selectHourLiveData
+
+    private var _selectMinLiveData = MutableLiveData<Int>()
+    var selectMinLiveData: LiveData<Int> = _selectMinLiveData
 
     var selectHour = 0
     var selectMinute = 0
@@ -47,6 +54,14 @@ class AddVM(private val repo: AddRepo) : BaseVM() {
 
                 uiScope.launch {
                     selectSoundUri = Uri.parse(bell)
+
+                    Calendar.getInstance().run {
+                        timeInMillis = alarmTime
+
+                        _selectHourLiveData.value = get(Calendar.HOUR_OF_DAY)
+                        _selectMinLiveData.value = get(Calendar.MINUTE)
+                    }
+
                 }
             }
         }
@@ -78,6 +93,9 @@ class AddVM(private val repo: AddRepo) : BaseVM() {
                 set(Calendar.MINUTE, selectMinute)
             }
 
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+
             remindTime = timeInMillis
         }
 
@@ -90,8 +108,12 @@ class AddVM(private val repo: AddRepo) : BaseVM() {
 
         item.id = selectItem?.id
 
+        Log.e("test","insert before id =${item.id}, time=$remindTime")
         ioScope.launch {
-            repo.insertItem(item)
+            var id = repo.insertItem(item)
+            Log.e("test","insert after id =${id}")
+
+            AlarmUtils.register(id, remindTime)
         }
 
         backStackFlag.value = true

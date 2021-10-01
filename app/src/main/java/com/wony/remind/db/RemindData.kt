@@ -18,13 +18,11 @@ object RemindData {
         var isActive: Boolean = true        // 활성화 여부
     )
 
-
     @Dao
     interface DAO : BaseDAO<Item> {
 
         @Query("SELECT * FROM $TABLE_NAME")
         fun select(): LiveData<List<Item>>
-
 
         @Query("SELECT * FROM $TABLE_NAME WHERE id =:id")
         fun select(id: Long): Item?

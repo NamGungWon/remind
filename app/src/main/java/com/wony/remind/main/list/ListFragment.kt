@@ -23,7 +23,6 @@ class ListFragment : BaseFragment<FragmentListBinding, ListVM>() {
             adapter.items = it
         })
 
-
         binding.btAdd.setOnClickListener {
             moveNavi(R.id.action_listFragment_to_addFragment)
         }

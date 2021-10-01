@@ -9,7 +9,5 @@ class ListRepo(private val context: Context) {
 
     fun selectRemindItems() = dao.select()
 
-    fun updateRemindActive(id: Long, isActive: Boolean){
-        dao.updateActive(id, isActive)
-    }
+    fun updateRemindActive(id: Long, isActive: Boolean) = dao.updateActive(id, isActive)
 }

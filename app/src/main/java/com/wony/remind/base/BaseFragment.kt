@@ -57,7 +57,7 @@ abstract class BaseFragment<B : ViewDataBinding, V: BaseVM>: Fragment() {
         findNavController().navigate(action)
     }
 
-    fun backStack(){
+    open fun backStack(){
         findNavController().popBackStack()
     }
 

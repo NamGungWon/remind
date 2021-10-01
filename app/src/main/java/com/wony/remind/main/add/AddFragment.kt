@@ -6,6 +6,7 @@ import android.media.MediaPlayer
 import android.media.Ringtone
 import android.media.RingtoneManager
 import android.net.Uri
+import android.os.Build
 import android.util.Log
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
@@ -21,7 +22,6 @@ class AddFragment : BaseFragment<FragmentAddBinding, AddVM>() {
     override val layoutId = R.layout.fragment_add
     override val viewModel: AddVM by viewModel()
 
-
     private val args: AddFragmentArgs by navArgs()
 
     private var resultLauncher = registerForActivityResult(
@@ -31,18 +31,9 @@ class AddFragment : BaseFragment<FragmentAddBinding, AddVM>() {
             it.data?.let {
                 var uri = it.getParcelableExtra<Uri>(RingtoneManager.EXTRA_RINGTONE_PICKED_URI)
                 viewModel.selectSoundUri = uri
-//                var title = uri?.getQueryParameter("title")?: ""
-//                binding.tvSelectSound.text = title
-                Log.e("uri","path=${uri}")
-//                var mediaPlayer = MediaPlayer.create(context, Uri.parse("content://media/external/audio/media/6855"))
-//                mediaPlayer.start()
-//                var sound = RingtoneManager.getRingtone(context, uri)
-//                sound.play()
             }
         }
     }
-
-
 
     override fun init() {
         binding.vm = viewModel
@@ -50,6 +41,22 @@ class AddFragment : BaseFragment<FragmentAddBinding, AddVM>() {
         viewModel.setSelectId(args.id)
 
         viewModel.selectSoundUri = RingtoneManager.getActualDefaultRingtoneUri(context, RingtoneManager.TYPE_ALL)
+
+        viewModel.selectHourLiveData.observe(viewLifecycleOwner, {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                binding.timePicker.hour = it
+            }else{
+                binding.timePicker.currentHour = it
+            }
+        })
+
+        viewModel.selectMinLiveData.observe(viewLifecycleOwner, {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                binding.timePicker.minute = it
+            }else{
+                binding.timePicker.currentMinute = it
+            }
+        })
 
         binding.tvSelectSound.setOnClickListener {
             Intent(RingtoneManager.ACTION_RINGTONE_PICKER).apply {
