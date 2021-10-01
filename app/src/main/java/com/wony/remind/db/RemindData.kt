@@ -1,13 +1,12 @@
 package com.wony.remind.db
 
-import androidx.room.ColumnInfo
-import androidx.room.Dao
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.lifecycle.LiveData
+import androidx.room.*
 import com.wony.remind.base.BaseDAO
 
 object RemindData {
 
+    const val TABLE_NAME = "remind"
 
     @Entity(tableName = "remind")
     data class Item(
@@ -23,5 +22,7 @@ object RemindData {
     @Dao
     interface DAO : BaseDAO<Item> {
 
+        @Query("SELECT * FROM $TABLE_NAME")
+        fun select(): LiveData<List<Item>>
     }
 }

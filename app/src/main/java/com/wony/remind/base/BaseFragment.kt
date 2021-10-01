@@ -43,11 +43,19 @@ abstract class BaseFragment<B : ViewDataBinding, V: BaseVM>: Fragment() {
             toast?.show()
         })
 
+        viewModel.backStackFlag.observe(viewLifecycleOwner, {
+            backStack()
+        })
+
         init()
     }
 
     fun moveNavi(id: Int){
         findNavController().navigate(id)
+    }
+
+    fun backStack(){
+        findNavController().popBackStack()
     }
 
     abstract fun init()

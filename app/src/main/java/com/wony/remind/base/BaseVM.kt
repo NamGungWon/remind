@@ -13,6 +13,7 @@ open class BaseVM: ViewModel() {
 
     var ioScope = CoroutineScope(Dispatchers.IO + job)
     val toastFlag  = SingleLiveData<String>()
+    val backStackFlag  = SingleLiveData<Boolean>()
 
     override fun onCleared() {
         job.cancel()

@@ -19,6 +19,11 @@ class ListFragment : BaseFragment<FragmentListBinding, ListVM>() {
 
         binding.rvList.adapter = adapter
 
+        viewModel.remindItems.observe(viewLifecycleOwner, {
+            adapter.items = it
+        })
+
+
         binding.btAdd.setOnClickListener {
             moveNavi(R.id.action_listFragment_to_addFragment)
         }

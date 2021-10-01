@@ -66,8 +66,6 @@ class AddVM(private val repo: AddRepo) : BaseVM() {
             remindTime = timeInMillis
         }
 
-
-
         var item = RemindData.Item(
             alarmTime = remindTime,
             updateTime = remindTime,
@@ -80,5 +78,7 @@ class AddVM(private val repo: AddRepo) : BaseVM() {
         ioScope.launch {
             repo.insertItem(item)
         }
+
+        backStackFlag.value = true
     }
 }

@@ -10,7 +10,11 @@ import com.wony.remind.db.RemindData
 class ListItemAdapter(private val fragment: ListFragment) :
     RecyclerView.Adapter<ListItemAdapter.ItemViewHolder>() {
 
-    private var items = listOf<RemindData.Item>()
+    var items = listOf<RemindData.Item>()
+    set(value) {
+        field = value
+        notifyDataSetChanged()
+    }
 
     inner class ItemViewHolder(private var binding: ItemRemindBinding) :
         RecyclerView.ViewHolder(binding.root) {
